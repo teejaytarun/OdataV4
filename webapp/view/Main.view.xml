@@ -1,0 +1,61 @@
+<mvc:View controllerName="demo.teejay.OdataV4.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="My List"  showFooter="true">
+					<content>
+							<Table id="peopleList" growing="true" growingThreshold="10"
+						items="{ 
+							path: 'odataModel>/People',
+							parameters: {
+								$expand: 'Trips',
+      							$$updateGroupId : 'updateGroup'
+							}
+						}">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="People List" />
+									<ToolbarSpacer/>
+									<OverflowToolbarToggleButton icon="sap-icon://filter" press=".onFilter" />
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="userNameColumn">
+								<Text text="User Name"/>
+							</Column>
+							<Column id="firstNameColumn">
+								<Text text="First Name"/>
+							</Column>
+							<Column id="lastNameColumn">
+								<Text text="Last Name"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press ="onListItemPress">
+								<cells>
+									<Input value="{odataModel>UserName}"/>
+									<Input value="{odataModel>FirstName}"/>
+									<Input value="{odataModel>LastName}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					</content>
+					<footer>
+						<Toolbar >
+							<ToolbarSpacer/>
+							<Button
+								id="saveButton"
+								type="Emphasized"
+								text="Save"
+								press=".onSave"/>
+						</Toolbar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,1 +1,4 @@
-/* Enter your custom styles here */
+Demo/* Enter your custom styles here */
+
+tr[data-mycolor=blue] { background-color:   #b3d9ff !important; }
+tr[data-mycolor=red] { background-color:   #ffcce6 !important; } 

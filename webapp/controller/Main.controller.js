@@ -24,7 +24,8 @@ sap.ui.define([
 		
 		},
 						onListItemPress: function(oEvent) {
-					oEvent.getSource().getBindingContext("odataModel").setProperty("LastName", "Jain");
+				//	oEvent.getSource().getBindingContext("odataModel").setProperty("LastName", "Jain");
+					oEvent.getSource().getBindingContext("odataModel").setProperty("Trips/0/Description", "Test TJ");
 					
 			
 			

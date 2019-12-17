@@ -1,11 +1,11 @@
-<mvc:View controllerName="demo.teejay.OdataV4.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-
+<mvc:View controllerName="demo.teejay.OdataV4.controller.Main"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="My List"  showFooter="true">
 					<content>
 							<Table id="peopleList" growing="true" growingThreshold="10"
+								showUnread="true"
 						items="{ 
 							path: 'odataModel>/People',
 							parameters: {
@@ -24,7 +24,9 @@
 						</headerToolbar>
 						<columns>
 							<Column id="userNameColumn">
-								<Text text="User Name"/>
+								<Text text="User Name">
+
+			</Text> 
 							</Column>
 							<Column id="firstNameColumn">
 								<Text text="First Name"/>
@@ -32,15 +34,30 @@
 							<Column id="lastNameColumn">
 								<Text text="Last Name"/>
 							</Column>
+							<!--<Column id="agColumn">-->
+							<!--	<Text text="Last Trip"/>-->
+							<!--</Column>-->
 						</columns>
 						<items>
-							<ColumnListItem type="Active" press ="onListItemPress">
+							<ColumnListItem type="Active" press ="onListItemPress" 	unread="true"  highlight="{= %{odataModel>Gender} === 'Male' ? 'Information' : 'Error' }">
+								<!--<ColumnListItem type="Active" press ="onListItemPress" 	unread="true"  highlight="Information">-->
+																										<customData>
+
+<core:CustomData key="mycolor" value="{= %{odataModel>Gender}  === 'Male' ? 'blue' : 'red' }" writeToDom="true" />
+
+</customData>
 								<cells>
-									<Input value="{odataModel>UserName}"/>
-									<Input value="{odataModel>FirstName}"/>
-									<Input value="{odataModel>LastName}"/>
+<!--									<Input value="{odataModel>UserName}">-->
+<!--</Input>-->
+<!--									<Input value="{odataModel>FirstName}"/>	-->
+<!--									<Input value="{odataModel>LastName}"/>-->
+	<Text text="{odataModel>UserName}">
+</Text>
+									<Text text="{odataModel>FirstName}"/>	
+									<Text text="{odataModel>LastName}"/>
+								    <!--<Input value="{odataModel>Trips/0/Description}"/>-->
 								</cells>
-							</ColumnListItem>
+											</ColumnListItem>
 						</items>
 					</Table>
 					</content>
